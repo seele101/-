@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超市购物 - GitHub Pages部署版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .platform-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .deploy-guide {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            margin: 20px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #ff6b6b;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .github-steps {
+            background: #24292e;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .code {
+            background: #1b1f23;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🛒 超市购物</div>
+            <div style="font-size: 1.2rem; opacity: 0.9;">GitHub Pages 部署版本</div>
+            <div class="platform-badge">🚀 完全免费 · 全球访问</div>
+        </header>
+        
+        <div class="content">
+            <div class="deploy-guide">
+                <h3>📋 GitHub Pages 部署指南</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>创建GitHub仓库</strong><br>
+                    登录GitHub，点击右上角"+"号 → "New repository"
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>上传代码文件</strong><br>
+                    将本页代码保存为index.html，上传到仓库根目录
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>开启GitHub Pages</strong><br>
+                    进入Settings → Pages → 选择部署分支 → 保存
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <strong>获取访问地址</strong><br>
+                    系统生成：https://用户名.github.io/仓库名
+                </div>
+            </div>
+            
+            <h3>🛍️ 商品展示</h3>
+            <div class="products-grid" id="productsContainer">
+                <!-- 商品动态加载 -->
+            </div>
+            
+            <div class="github-steps">
+                <h4>💻 快速部署命令（可选）</h4>
+                <div class="code">
+# 克隆仓库（替换为您的仓库地址）<br>
+git clone https://github.com/您的用户名/仓库名.git<br>
+cd 仓库名<br><br>
+
+# 添加index.html文件<br>
+# 提交并推送<br>
+git add .<br>
+git commit -m "部署超市购物网页"<br>
+git push origin main
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 商品数据
+        const products = [
+            {
+                id: 1,
+                name: '红富士苹果',
+                price: 12.8,
+                image: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=300&h=200&fit=crop',
+                category: 'fruit',
+                unit: '500g'
+            },
+            {
+                id: 2,
+                name: '新鲜香蕉',
+                price: 6.5,
+                image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&h=200&fit=crop',
+                category: 'fruit',
+                unit: '500g'
+            },
+            {
+                id: 3,
+                name: '土鸡蛋',
+                price: 15.9,
+                image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c15?w=300&h=200&fit=crop',
+                category: 'egg',
+                unit: '盒'
+            },
+            {
+                id: 4,
+                name: '鲜牛奶',
+                price: 8.5,
+                image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=200&fit=crop',
+                category: 'milk',
+                unit: '1L'
+            }
+        ];
+
+        // 渲染商品
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            let html = '';
+            
+            products.forEach(product => {
+                html += `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}" class="product-image"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPiR7cHJvZHVjdC5uYW1lfTwvdGV4dD48L3N2Zz4='">
+                        <div class="product-info">
+                            <div class="product-name">${product.name}</div>
+                            <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">${product.unit}</div>
+                            <div class="price">￥${product.price}</div>
+                            <button class="btn" onclick="addToCart(${product.id})">加入购物车</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                alert(`✅ 添加成功！\n${product.name}\n价格: ￥${product.price}`);
+            }
+        }
+
+        // 页面加载时渲染
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html>
